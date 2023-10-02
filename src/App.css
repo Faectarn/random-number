@@ -1,7 +1,6 @@
 #root {
   max-width: 1280px;
   margin: 0 auto;
-  padding: 2rem;
   text-align: center;
 }
 
@@ -33,10 +32,6 @@
   }
 }
 
-.card {
-  padding: 2em;
-}
-
 .button-row {
   display: flex;
   flex-wrap: wrap;
@@ -44,8 +39,9 @@
 }
 
 .button-row button {
-  flex-basis: 25%;
-  margin: 2px; /* takes 25% of the container width */
+  width: 7rem;
+  height: 6rem;
+  margin: 4px; /* takes 25% of the container width */
 }
 
 .selected {
