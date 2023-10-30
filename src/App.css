@@ -62,9 +62,10 @@
 
 .number-input {
   font-weight: bold;
-  padding: 5px 0px 5px 20px;
+  padding: 7px 0 7px 20px;
   width: 3rem;
   height: 29px;
+  border: none;
 }
 
 .submit-button {
