@@ -81,7 +81,7 @@
   align-items: center;
   flex-wrap: wrap;
   gap: 5px;
-  margin: 20px 3%;
+  margin: 20px 0;
 }
 
 .number-row span {
@@ -92,7 +92,7 @@
 .number-row .highlight {
   color: red;
   font-weight: bold;
-  font-size: 22px;
+  font-size: 18px;
 }
 
 .read-the-docs {

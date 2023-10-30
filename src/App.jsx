@@ -35,7 +35,7 @@ function App() {
 
   return (
     <>
-      {/* <h1>Vite + React</h1> */}
+      <h3>Random number generator</h3>
       <div className="card">
         <div className="button-grid">
           {Array.from({ length: 9 }, (_, i) => i + 2).map((num) => (
