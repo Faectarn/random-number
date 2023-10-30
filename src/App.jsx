@@ -38,7 +38,7 @@ function App() {
       {/* <h1>Vite + React</h1> */}
       <div className="card">
         <div className="button-grid">
-          {Array.from({ length: 8 }, (_, i) => i + 2).map((num) => (
+          {Array.from({ length: 9 }, (_, i) => i + 2).map((num) => (
             <button
               key={num}
               onClick={() => handleNumberSelectAndGenerate(num)}
@@ -55,16 +55,18 @@ function App() {
             value={inputValue}
             onChange={handleInputChange}
             placeholder="10"
+            min="10"
             disabled={shuffling}
           />
           <button className="submit-button" onClick={handleSubmit} disabled={shuffling}>Shuffle</button>
         </div>
         <div className="number-row">
-          {maxNumber && Array.from({ length: maxNumber }, (_, i) => i + 1).map((num) => (
+          {maxNumber && maxNumber <= 10 && Array.from({ length: maxNumber }, (_, i) => i + 1).map((num) => (
             <span key={num} className={randomNumber === num ? 'highlight' : ''}>
               {num}
             </span>
           ))}
+          {maxNumber && maxNumber > 10 && <span className="highlight">{randomNumber}</span>}
         </div>
       </div>
     </>
