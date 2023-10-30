@@ -10,9 +10,11 @@
   will-change: filter;
   transition: filter 300ms;
 }
+
 .logo:hover {
   filter: drop-shadow(0 0 2em #646cffaa);
 }
+
 .logo.react:hover {
   filter: drop-shadow(0 0 2em #61dafbaa);
 }
@@ -21,6 +23,7 @@
   from {
     transform: rotate(0deg);
   }
+
   to {
     transform: rotate(360deg);
   }
@@ -32,20 +35,44 @@
   }
 }
 
-.button-row {
+.button-grid {
   display: flex;
   flex-wrap: wrap;
   justify-content: center;
 }
 
-.button-row button {
+.button-grid button {
   width: 7rem;
   height: 6rem;
-  margin: 4px; /* takes 25% of the container width */
+  margin: 4px;
+  /* takes 25% of the container width */
 }
 
 .selected {
-  border: 2px solid #4f4f4f; /* or any other border style you prefer */
+  border: 2px solid #4f4f4f;
+  /* or any other border style you prefer */
+}
+
+.input-section {
+  margin-top: 1rem;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.number-input {
+  font-weight: bold;
+  padding: 5px 0 5px 15px;
+  width: 2rem;
+  height: 29px;
+}
+
+.submit-button {
+  background-color: green;
+  color: white;
+  font-weight: normal;
+  border: 1px solid #4f4f4f;
+  border-radius: 0;
 }
 
 .number-row {
@@ -54,7 +81,7 @@
   align-items: center;
   flex-wrap: wrap;
   gap: 5px;
-  margin-top: 20px;
+  margin: 20px 75px;
 }
 
 .number-row span {
@@ -70,4 +97,8 @@
 
 .read-the-docs {
   color: #888;
+}
+
+.korv {
+  background-color: #4f4f4f;
 }
