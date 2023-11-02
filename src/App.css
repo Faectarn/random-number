@@ -36,21 +36,31 @@
 }
 
 .button-grid {
-  display: flex;
-  flex-wrap: wrap;
-  justify-content: center;
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 7px;
+}
+
+
+@media (min-width: 600px) {
+  .button-grid {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 7px;
+  }
+
+  .button-grid :nth-child(9) {
+    display: none;
+  }
 }
 
 .button-grid button {
   width: 7rem;
   height: 6rem;
-  margin: 4px;
-  /* takes 25% of the container width */
 }
 
 .selected {
   border: 2px solid #4f4f4f;
-  /* or any other border style you prefer */
 }
 
 .input-section {
