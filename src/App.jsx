@@ -3,9 +3,9 @@ import './App.css';
 
 function App() {
   const [inputValue, setInputValue] = useState('');
-  const [numRandoms, setNumRandoms] = useState(1); // New state for the number of randoms
+  const [numRandoms, setNumRandoms] = useState(1);
   const [maxNumber, setMaxNumber] = useState(null);
-  const [randomNumbers, setRandomNumbers] = useState([]); // Now an array
+  const [randomNumbers, setRandomNumbers] = useState([]);
   const [shuffling, setShuffling] = useState(false);
   const [ignoredNumbers, setIgnoredNumbers] = useState([]);
 
@@ -33,12 +33,12 @@ function App() {
       }
     }, 50);
   };
-  
+
   const handleInputChange = (e) => {
     setInputValue(e.target.value);
   };
 
-  const handleNumRandomsChange = (e) => { // New handler for number of randoms input
+  const handleNumRandomsChange = (e) => {
     setNumRandoms(Math.max(1, parseInt(e.target.value, 10) || 1));
   };
 
@@ -76,16 +76,16 @@ function App() {
           ))}
         </div>
         <div className="numbers">
-        Numbers to ignore:
-        <input
-    className='small-input'
-    type="text"
-    value={ignoredNumbers.join(',')}
-    onChange={e => setIgnoredNumbers(e.target.value.split(',').map(num => parseInt(num, 10)).filter(num => !isNaN(num)))}
-    placeholder="0"
-    disabled={shuffling}
-  />
-  </div>
+          Numbers to ignore:
+          <input
+            className='small-input'
+            type="text"
+            value={ignoredNumbers.join(',')}
+            onChange={e => setIgnoredNumbers(e.target.value.split(',').map(num => parseInt(num, 10)).filter(num => !isNaN(num)))}
+            placeholder="0"
+            disabled={shuffling}
+          />
+        </div>
         <div className="input-section">
           <input
             className='number-input'
@@ -96,7 +96,6 @@ function App() {
             min="10"
             disabled={shuffling}
           />
-
           <button className="submit-button" onClick={handleSubmit} disabled={shuffling}>Shuffle</button>
         </div>
         <div className="number-row">
@@ -109,14 +108,6 @@ function App() {
             <span key={index} className="highlight">{num}</span>
           ))}
         </div>
-        {/* <div className="number-row">
-          {maxNumber && maxNumber <= 10 && Array.from({ length: maxNumber }, (_, i) => i + 1).map((num) => (
-            <span key={num} className={randomNumber === num ? 'highlight' : ''}>
-              {num}
-            </span>
-          ))}
-          {maxNumber && maxNumber > 10 && <span className="highlight">{randomNumber}</span>}
-        </div> */}
       </div>
     </>
   );
