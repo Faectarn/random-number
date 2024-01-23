@@ -3,17 +3,29 @@ import './App.css';
 
 function App() {
   const [inputValue, setInputValue] = useState('');
+  const [numRandoms, setNumRandoms] = useState(1); // New state for the number of randoms
   const [maxNumber, setMaxNumber] = useState(null);
-  const [randomNumber, setRandomNumber] = useState(null);
+  const [randomNumbers, setRandomNumbers] = useState([]); // Now an array
   const [shuffling, setShuffling] = useState(false);
+  const [ignoredNumbers, setIgnoredNumbers] = useState([]);
+
+
+  const shuffleArray = (array) => {
+    for (let i = array.length - 1; i > 0; i--) {
+      const j = Math.floor(Math.random() * (i + 1));
+      [array[i], array[j]] = [array[j], array[i]];
+    }
+  };
 
   const handleNumberSelectAndGenerate = (num) => {
-    if (shuffling) return;
+    if (shuffling || num < numRandoms) return;
     setMaxNumber(num);
     setShuffling(true);
     let count = 0;
     const intervalId = setInterval(() => {
-      setRandomNumber(Math.floor(Math.random() * num) + 1);
+      const possibleNumbers = Array.from({ length: num }, (_, i) => i + 1).filter(n => !ignoredNumbers.includes(n));
+      shuffleArray(possibleNumbers);
+      setRandomNumbers(possibleNumbers.slice(0, numRandoms));
       count += 1;
       if (count > 10) {
         clearInterval(intervalId);
@@ -21,9 +33,13 @@ function App() {
       }
     }, 50);
   };
-
+  
   const handleInputChange = (e) => {
     setInputValue(e.target.value);
+  };
+
+  const handleNumRandomsChange = (e) => { // New handler for number of randoms input
+    setNumRandoms(Math.max(1, parseInt(e.target.value, 10) || 1));
   };
 
   const handleSubmit = () => {
@@ -37,6 +53,17 @@ function App() {
     <>
       <h3>Random number generator</h3>
       <div className="card">
+        <div className="numbers">
+          Numbers to generate:
+          <input
+            className='small-input'
+            type="number"
+            onChange={handleNumRandomsChange}
+            placeholder="1"
+            min="1"
+            disabled={shuffling}
+          />
+        </div>
         <div className="button-grid">
           {Array.from({ length: 9 }, (_, i) => i + 2).map((num) => (
             <button
@@ -48,6 +75,17 @@ function App() {
             </button>
           ))}
         </div>
+        <div className="numbers">
+        Numbers to ignore:
+        <input
+    className='small-input'
+    type="text"
+    value={ignoredNumbers.join(',')}
+    onChange={e => setIgnoredNumbers(e.target.value.split(',').map(num => parseInt(num, 10)).filter(num => !isNaN(num)))}
+    placeholder="0"
+    disabled={shuffling}
+  />
+  </div>
         <div className="input-section">
           <input
             className='number-input'
@@ -58,19 +96,32 @@ function App() {
             min="10"
             disabled={shuffling}
           />
+
           <button className="submit-button" onClick={handleSubmit} disabled={shuffling}>Shuffle</button>
         </div>
         <div className="number-row">
+          {maxNumber && maxNumber <= 100 && Array.from({ length: maxNumber }, (_, i) => i + 1).map((num) => (
+            <span key={num} className={randomNumbers.includes(num) ? 'highlight' : ''}>
+              {num}
+            </span>
+          ))}
+          {maxNumber && maxNumber > 100 && randomNumbers.map((num, index) => (
+            <span key={index} className="highlight">{num}</span>
+          ))}
+        </div>
+        {/* <div className="number-row">
           {maxNumber && maxNumber <= 10 && Array.from({ length: maxNumber }, (_, i) => i + 1).map((num) => (
             <span key={num} className={randomNumber === num ? 'highlight' : ''}>
               {num}
             </span>
           ))}
           {maxNumber && maxNumber > 10 && <span className="highlight">{randomNumber}</span>}
-        </div>
+        </div> */}
       </div>
     </>
   );
 }
+
+
 
 export default App;

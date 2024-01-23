@@ -37,21 +37,26 @@
 
 .button-grid {
   display: grid;
-  grid-template-columns: repeat(3, 1fr);
+  grid-template-columns: repeat(2, 1fr);
   gap: 7px;
 }
 
+.card {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
 
-@media (min-width: 600px) {
-  .button-grid {
-    display: grid;
-    grid-template-columns: repeat(4, 1fr);
-    gap: 7px;
-  }
+.numbers {
+  margin: 10px 0;
+}
 
-  .button-grid :nth-child(9) {
-    display: none;
-  }
+.small-input {
+  font-weight: bold;
+  padding:0 5px;
+  width: 2.5rem;
+  height: 29px;
+  border: none; 
 }
 
 .button-grid button {
@@ -91,12 +96,21 @@
   justify-content: center;
   align-items: center;
   flex-wrap: wrap;
-  gap: 5px;
   margin: 20px 0;
+  width: 22rem;
 }
 
 .number-row span {
-  padding: 10px;
+  width: 20px;
+  text-align: center;
+  padding: 5px;
+  border: 1px solid #ddd;
+  border-radius: 4px;
+}
+
+
+.number-row span {
+  padding: 2px;
   text-align: center;
 }
 
@@ -112,4 +126,38 @@
 
 .korv {
   background-color: #4f4f4f;
+}
+
+@media (max-width: 360px) {
+  .button-grid :nth-child(9) {
+    display: none;
+  }
+}
+
+@media (max-width: 500px) {
+
+}
+
+@media (min-width: 360px) {
+  .button-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 7px;
+  }
+}
+
+@media (min-width: 500px) {
+  .button-grid {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 7px;
+  }
+
+  .button-grid :nth-child(9) {
+    display: none;
+  }
+
+  .number-row {
+    width: 30rem;
+  }
 }
