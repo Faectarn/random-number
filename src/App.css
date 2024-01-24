@@ -56,7 +56,8 @@
   padding:0 5px;
   width: 2.5rem;
   height: 29px;
-  border: none; 
+  border: none;
+  background: none;
 }
 
 .button-grid button {
@@ -128,11 +129,11 @@
   background-color: #4f4f4f;
 }
 
-@media (max-width: 360px) {
+/* @media (max-width: 500px) {
   .button-grid :nth-child(9) {
     display: none;
   }
-}
+} */
 
 @media (max-width: 500px) {
 

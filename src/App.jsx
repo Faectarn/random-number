@@ -27,11 +27,11 @@ function App() {
       shuffleArray(possibleNumbers);
       setRandomNumbers(possibleNumbers.slice(0, numRandoms));
       count += 1;
-      if (count > 10) {
+      if (count > 6) {
         clearInterval(intervalId);
         setShuffling(false);
       }
-    }, 50);
+    }, 75);
   };
 
   const handleInputChange = (e) => {
@@ -112,7 +112,5 @@ function App() {
     </>
   );
 }
-
-
 
 export default App;
