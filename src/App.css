@@ -48,7 +48,7 @@
 }
 
 .numbers {
-  margin: 10px 0;
+  margin: 10px 0px 10px 40px;
 }
 
 .small-input {
@@ -70,7 +70,6 @@
 }
 
 .input-section {
-  margin-top: 1rem;
   display: flex;
   justify-content: center;
   align-items: center;
@@ -102,16 +101,16 @@
 }
 
 .number-row span {
-  width: 20px;
+  min-width: 24px;
   text-align: center;
   padding: 5px;
   border: 1px solid #3b3b3b;
   border-radius: 4px;
 }
 
-
 .number-row span {
-  padding: 2px;
+  height: 25px;
+  padding: 4px;
   text-align: center;
 }
 
@@ -124,16 +123,6 @@
 .read-the-docs {
   color: #888;
 }
-
-.korv {
-  background-color: #4f4f4f;
-}
-
-/* @media (max-width: 500px) {
-  .button-grid :nth-child(9) {
-    display: none;
-  }
-} */
 
 @media (max-width: 500px) {
 

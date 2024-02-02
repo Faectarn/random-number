@@ -9,7 +9,6 @@ function App() {
   const [shuffling, setShuffling] = useState(false);
   const [ignoredNumbers, setIgnoredNumbers] = useState([]);
 
-
   const shuffleArray = (array) => {
     for (let i = array.length - 1; i > 0; i--) {
       const j = Math.floor(Math.random() * (i + 1));
@@ -64,6 +63,7 @@ function App() {
             disabled={shuffling}
           />
         </div>
+        <p>Select a number between 1 and :</p>
         <div className="button-grid">
           {Array.from({ length: 9 }, (_, i) => i + 2).map((num) => (
             <button
@@ -76,7 +76,7 @@ function App() {
           ))}
         </div>
         <div className="numbers">
-          Numbers to ignore:
+          {/* Numbers to ignore:
           <input
             className='small-input'
             type="text"
@@ -84,8 +84,9 @@ function App() {
             onChange={e => setIgnoredNumbers(e.target.value.split(',').map(num => parseInt(num, 10)).filter(num => !isNaN(num)))}
             placeholder="0"
             disabled={shuffling}
-          />
-        </div>
+          /> */ }
+        </div> 
+        <p>Or select a number in the field below</p>
         <div className="input-section">
           <input
             className='number-input'
