@@ -55,7 +55,7 @@ function App() {
 
   return (
     <>
-      <h3>Random number generator</h3>
+      {/* <h3>Random number generator</h3> */}
       <div className="card">
         <div className="numbers">
           Numbers to generate:
@@ -68,7 +68,7 @@ function App() {
             disabled={shuffling}
           />
         </div>
-        <p>Select a number between 1 and :</p>
+        {/* <p>Select a number between 1 and :</p> */}
         <div className="button-grid">
           {Array.from({ length: 9 }, (_, i) => i + 2).map((num) => (
             <button
@@ -92,7 +92,7 @@ function App() {
             disabled={shuffling}
           /> */}
         </div>
-        <p>Or select a number in the field below</p>
+        {/* <p>Or select a number in the field below</p> */}
         <div className="input-section">
           <input
             className="number-input"

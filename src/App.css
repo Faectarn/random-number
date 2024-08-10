@@ -53,7 +53,7 @@
 
 .small-input {
   font-weight: bold;
-  padding:0 5px;
+  padding: 0 5px;
   width: 2.5rem;
   height: 29px;
   border: none;
@@ -96,13 +96,13 @@
   justify-content: center;
   align-items: center;
   flex-wrap: wrap;
-  margin: 2px 0;
+  margin: 0;
   width: 22rem;
 }
 
 .number-row span {
   height: 30px;
-  min-width: 40px;
+  width: 40px;
   text-align: center;
   padding: 5px;
   border: 1px solid #3b3b3b;
@@ -118,24 +118,32 @@
 .number-row .highlight2 {
   color: rgb(255, 234, 0);
   font-weight: bold;
-  font-size: 18px;
+  font-size: 13px;
 }
 
 .special-numbers {
-  margin: 5px;
+  margin: 3px;
 }
 
 .special-numbers .number-row {
-  margin: 3px 0;
+  margin: 2px 0;
+}
+
+.special-numbers span {
+  width: 22px;
+  height: 19px;
+  font-size: 12px;
+  padding: 0 0 2px 0;
+  display: flex;
+  justify-content: center;
+  align-items: center;
 }
 
 .read-the-docs {
   color: #888;
 }
 
-@media (max-width: 500px) {
-
-}
+@media (max-width: 500px) {}
 
 @media (min-width: 360px) {
   .button-grid {
