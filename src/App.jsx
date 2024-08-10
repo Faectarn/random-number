@@ -1,8 +1,8 @@
-import { useState } from 'react';
-import './App.css';
+import { useState } from "react";
+import "./App.css";
 
 function App() {
-  const [inputValue, setInputValue] = useState('');
+  const [inputValue, setInputValue] = useState("");
   const [numRandoms, setNumRandoms] = useState(1);
   const [maxNumber, setMaxNumber] = useState(null);
   const [randomNumbers, setRandomNumbers] = useState([]);
@@ -22,7 +22,10 @@ function App() {
     setShuffling(true);
     let count = 0;
     const intervalId = setInterval(() => {
-      const possibleNumbers = Array.from({ length: num }, (_, i) => i + 1).filter(n => !ignoredNumbers.includes(n));
+      const possibleNumbers = Array.from(
+        { length: num },
+        (_, i) => i + 1
+      ).filter((n) => !ignoredNumbers.includes(n));
       shuffleArray(possibleNumbers);
       setRandomNumbers(possibleNumbers.slice(0, numRandoms));
       count += 1;
@@ -48,6 +51,8 @@ function App() {
     }
   };
 
+  const getSpecialNumber = (divider) => Math.ceil(randomNumbers[0] / divider);
+
   return (
     <>
       <h3>Random number generator</h3>
@@ -55,7 +60,7 @@ function App() {
         <div className="numbers">
           Numbers to generate:
           <input
-            className='small-input'
+            className="small-input"
             type="number"
             onChange={handleNumRandomsChange}
             placeholder="1"
@@ -70,7 +75,8 @@ function App() {
               key={num}
               onClick={() => handleNumberSelectAndGenerate(num)}
               disabled={shuffling}
-              className={num === maxNumber ? 'selected' : ''}>
+              className={num === maxNumber ? "selected" : ""}
+            >
               {num}
             </button>
           ))}
@@ -84,12 +90,12 @@ function App() {
             onChange={e => setIgnoredNumbers(e.target.value.split(',').map(num => parseInt(num, 10)).filter(num => !isNaN(num)))}
             placeholder="0"
             disabled={shuffling}
-          /> */ }
-        </div> 
+          /> */}
+        </div>
         <p>Or select a number in the field below</p>
         <div className="input-section">
           <input
-            className='number-input'
+            className="number-input"
             type="number"
             value={inputValue}
             onChange={handleInputChange}
@@ -97,17 +103,72 @@ function App() {
             min="10"
             disabled={shuffling}
           />
-          <button className="submit-button" onClick={handleSubmit} disabled={shuffling}>Shuffle</button>
+          <button
+            className="submit-button"
+            onClick={handleSubmit}
+            disabled={shuffling}
+          >
+            Shuffle
+          </button>
         </div>
+
+        <section className="special-numbers">
+          {maxNumber === 12 && !shuffling && (
+            <>
+              <div className="number-row">
+                {Array.from({ length: 2 }, (_, i) => i + 1).map((num) => (
+                  <span
+                    key={`1-2-${num}`}
+                    className={getSpecialNumber(6) === num ? 'highlight2' : ''}
+                  >
+                    {num}
+                  </span>
+                ))}
+              </div>
+
+              <div className="number-row">
+                {Array.from({ length: 3 }, (_, i) => i + 1).map((num) => (
+                  <span
+                    key={`1-3-${num}`}
+                    className={getSpecialNumber(4) === num ? 'highlight2' : ''}
+                  >
+                    {num}
+                  </span>
+                ))}
+              </div>
+
+              <div className="number-row">
+                {Array.from({ length: 4 }, (_, i) => i + 1).map((num) => (
+                  <span
+                    key={`1-4-${num}`}
+                    className={getSpecialNumber(3) === num ? 'highlight2' : ''}
+                  >
+                    {num}
+                  </span>
+                ))}
+              </div>
+            </>
+          )}
+        </section>
+
         <div className="number-row">
-          {maxNumber && maxNumber <= 100 && Array.from({ length: maxNumber }, (_, i) => i + 1).map((num) => (
-            <span key={num} className={randomNumbers.includes(num) ? 'highlight' : ''}>
-              {num}
-            </span>
-          ))}
-          {maxNumber && maxNumber > 100 && randomNumbers.map((num, index) => (
-            <span key={index} className="highlight">{num}</span>
-          ))}
+          {maxNumber &&
+            maxNumber <= 100 &&
+            Array.from({ length: maxNumber }, (_, i) => i + 1).map((num) => (
+              <span
+                key={num}
+                className={randomNumbers.includes(num) ? "highlight" : ""}
+              >
+                {num}
+              </span>
+            ))}
+          {maxNumber &&
+            maxNumber > 100 &&
+            randomNumbers.map((num, index) => (
+              <span key={index} className="highlight">
+                {num}
+              </span>
+            ))}
         </div>
       </div>
     </>

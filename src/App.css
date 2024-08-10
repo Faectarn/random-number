@@ -96,28 +96,37 @@
   justify-content: center;
   align-items: center;
   flex-wrap: wrap;
-  margin: 20px 0;
+  margin: 2px 0;
   width: 22rem;
 }
 
 .number-row span {
-  min-width: 24px;
+  height: 30px;
+  min-width: 40px;
   text-align: center;
   padding: 5px;
   border: 1px solid #3b3b3b;
   border-radius: 4px;
 }
 
-.number-row span {
-  height: 25px;
-  padding: 4px;
-  text-align: center;
-}
-
 .number-row .highlight {
   color: red;
   font-weight: bold;
   font-size: 18px;
+}
+
+.number-row .highlight2 {
+  color: rgb(255, 234, 0);
+  font-weight: bold;
+  font-size: 18px;
+}
+
+.special-numbers {
+  margin: 5px;
+}
+
+.special-numbers .number-row {
+  margin: 3px 0;
 }
 
 .read-the-docs {
