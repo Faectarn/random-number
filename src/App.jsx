@@ -153,7 +153,7 @@ function App() {
 
         <div className="number-row">
           {maxNumber &&
-            maxNumber <= 100 &&
+            maxNumber <= 99 &&
             Array.from({ length: maxNumber }, (_, i) => i + 1).map((num) => (
               <span
                 key={num}
@@ -163,7 +163,7 @@ function App() {
               </span>
             ))}
           {maxNumber &&
-            maxNumber > 100 &&
+            maxNumber > 99 &&
             randomNumbers.map((num, index) => (
               <span key={index} className="highlight">
                 {num}
