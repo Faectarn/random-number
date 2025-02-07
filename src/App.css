@@ -220,6 +220,8 @@
   padding: 20px 20px;
   font-size: 16px;
   border-radius: 5px;
+  background-color: #1a1a1a;
+  
 }
 
 .rating-input {
@@ -227,6 +229,7 @@
   padding: 20px 20px;
   font-size: 16px;
   border-radius: 5px;
+  background-color: #1a1a1a;
 }
 
 
