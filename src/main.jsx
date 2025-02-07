@@ -1,43 +1,32 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import ReactDOM from "react-dom/client";
 import App from "./RandomApp.jsx";
 import TimeApp from "./TimeApp.jsx";
 import "./index.css";
 
 const Main = () => {
-  const [showApp, setShowApp] = useState(true);
+  // Load last viewed page from localStorage or default to true (App)
+  const [showApp, setShowApp] = useState(() => {
+    return localStorage.getItem("lastViewed") === "TimeApp" ? false : true;
+  });
+
+  // Save current page to localStorage whenever it changes
+  useEffect(() => {
+    localStorage.setItem("lastViewed", showApp ? "App" : "TimeApp");
+  }, [showApp]);
 
   return (
-    <div style={{ position: "relative", height: "100vh" }}>
-      {/* Växlingsknappen */}
+    <>
       <button
+        className="swap-button"
         onClick={() => setShowApp(!showApp)}
-        style={{
-          position: "absolute",
-          top: "20px",
-          right: "20px",
-          width: "50px",
-          height: "50px",
-          borderRadius: "50%",
-          backgroundColor: "red",
-          color: "white",
-          fontSize: "16px",
-          border: "none",
-          cursor: "pointer",
-          display: "flex",
-          alignItems: "center",
-          justifyContent: "center",
-          boxShadow: "2px 2px 10px rgba(0,0,0,0.2)",
-        }}
-      >
-        ↔
-      </button>
-
-      {/* Renderar den aktuella appen */}
-      <div style={{ textAlign: "center", marginTop: "5rem" }}>
-        {showApp ? <App /> : <TimeApp />}
+      ></button>
+      <div>
+        <div>
+          {showApp ? <App /> : <TimeApp />}
+        </div>
       </div>
-    </div>
+    </>
   );
 };
 

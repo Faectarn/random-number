@@ -39,7 +39,7 @@ const PopulationDateEstimator = () => {
   };
 
   return (
-    <div style={{ textAlign: "center", maxWidth: "400px", margin: "auto" }}>
+    <div className="card">
       {/* <h2>Datumestimator</h2> */}
 
       {/* <label>Datum 1: </label> */}
@@ -51,19 +51,20 @@ const PopulationDateEstimator = () => {
           onChange={(e) => setDate1(e.target.value)}
         />
         <br />
-      </div>
+      
 
-      <div className="time-input-div">
+      
         {/* <label>Ratings </label> */}
         <input
-          class="time-input"
+          class="rating-input"
           type="number"
-          placeholder="Ratings"
+          placeholder="Antal"
           value={population1}
           onChange={(e) => setPopulation1(e.target.value)}
         />
         <br />
-      </div>
+        </div>
+      
 
       <div className="time-input-div">
         {/* <label>Datum 2: </label> */}
@@ -74,24 +75,25 @@ const PopulationDateEstimator = () => {
           onChange={(e) => setDate2(e.target.value)}
         />
         <br />
-      </div>
-      <div className="time-input-div">
+      
+      
         {/* <label>Ratings </label> */}
         <input
-          class="time-input"
+          class="rating-input"
           type="number"
-          placeholder="Ratings"
+          placeholder="Antal"
           value={population2}
           onChange={(e) => setPopulation2(e.target.value)}
         />
         <br />
+        
       </div>
       <div className="time-input-div">
         {/* <label>Ratings:</label> */}
         <input
-          class="time-input"
+          class="rating-input"
           type="number"
-          placeholder="Ratings"
+          placeholder="Antal"
           value={targetPopulation}
           onChange={(e) => setTargetPopulation(e.target.value)}
         />
@@ -100,7 +102,7 @@ const PopulationDateEstimator = () => {
       <button className="date-button" onClick={calculateDate}>Beräkna Datum</button>
 
       {estimatedDate && <h3>Uppskattat datum: {estimatedDate}</h3>}
-    </div>
+      </div>
   );
 };
 
