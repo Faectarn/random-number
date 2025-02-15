@@ -1,4 +1,5 @@
 import { useState } from "react";
+import AttributeGenerator from "./Cyberpunk2077";
 import "./App.css";
 
 function App() {
@@ -55,6 +56,7 @@ function App() {
 
   return (
     <>
+    
       {/* <h3>Random number generator</h3> */}
       <div className="card">
         <div className="numbers">
@@ -171,6 +173,7 @@ function App() {
             ))}
         </div>
       </div>
+      <AttributeGenerator />
     </>
   );
 }
