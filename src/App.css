@@ -146,42 +146,6 @@
   color: #888;
 }
 
-@media (max-width: 500px) {
-  .button-grid {
-    display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(110px, 1fr));
-    gap: 7px;
-    width: 100%;
-    /* Ensure it spans the screen width */
-    max-width: 1200px;
-  }
-}
-
-@media (min-width: 360px) {
-  .button-grid {
-    display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(110px, 1fr));
-    gap: 7px;
-  }
-}
-
-@media (min-width: 500px) {
-  .button-grid {
-    display: grid;
-    grid-template-columns: repeat(4, 1fr);
-    gap: 7px;
-    width: 26rem;
-  }
-
-  .button-grid :nth-child(9) {
-    display: none;
-  }
-
-  .number-row {
-    width: 30rem;
-  }
-}
-
 .swap-button {
   background-color: #272727;
   border: solid 2px #4b4b4b;
@@ -207,6 +171,25 @@
 .swap-button:active {
   box-shadow: 0 0 2px darkslategray;
   transform: translateY(2px);
+}
+
+.ag-button {
+  left: 20px;
+  font-size: 14px;
+}
+
+.cp2077 {
+  font-size: 12px;
+  position: absolute;
+  top: 28px;
+  left: 5rem;
+}
+
+.avowed {
+  font-size: 12px;
+  position: absolute;
+  top: 28px;
+  left: 9rem;
 }
 
 .time-input-div {
@@ -267,5 +250,41 @@
 }
 
 .attribute-generator .attr-label p {
-margin: 0;
+  margin: 0;
+}
+
+@media (max-width: 500px) {
+  .button-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(110px, 1fr));
+    gap: 7px;
+    width: 100%;
+    /* Ensure it spans the screen width */
+    max-width: 1200px;
+  }
+}
+
+@media (min-width: 360px) {
+  .button-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(110px, 1fr));
+    gap: 7px;
+  }
+}
+
+@media (min-width: 500px) {
+  .button-grid {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 7px;
+    width: 26rem;
+  }
+
+  .button-grid :nth-child(9) {
+    display: none;
+  }
+
+  .number-row {
+    width: 30rem;
+  }
 }

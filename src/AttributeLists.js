@@ -1,0 +1,47 @@
+// src/attributeLists.js
+export const cyberpunkAttributes = {
+    "Skin tone (12):": "12",
+    "Skin type (5):": "5",
+    "Hairstyle (51):": "51",
+    "Hair color (35):": "35",
+    "Eyes (21):": "21",
+    "Eye color (9):": "9",
+    "Eyebrows (13):": "13",
+    "Nose (21):": "21",
+    "Mouth (21):": "21",
+    "Jaw (21):": "21",
+    "Ears (21):": "21",
+    "Beard (13):": "13",
+    "Beard style (3/7):": "3-7",
+    // "Cyberware (10):": "10",
+    "Facial scars (14):": "14",
+    "Facial tatoos (16):": "16",
+    "Blemishes (4):": "4",
+    "Blemisher color (6):": "6",
+    "Body tattoos (8):": "8",
+    "Body scars (3):": "3"
+};
+
+export const avowedAttributes = {
+    "Body (24)": "24",
+    "Skin Color (24)": "24",
+    "Face (14)": "14",
+    "Godlike (14)": "14",
+    "Godlike hair (4)": "4",
+    "Hair (50)": "50",
+    "Hair root (18)": "18",
+    "Beard (18)": "18",
+    "Eyes x 5": "-5-5",
+    "Eye color (10)": "10",
+    "Brows x 5": "11",
+    "Nose x 5": "11",
+    "Face x 9": "11",
+    "Mouth x 4": "11",
+    "Ears x 3": "11",
+    "Completion (10)": "9",
+    "Amount (10)": "0-10",
+    "Spread (10)": "0-10",
+    "Completion color (8)": "8",
+    "Background (5)": "5",
+    "Voice (2)": "2"
+};

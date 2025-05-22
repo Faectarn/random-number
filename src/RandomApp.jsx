@@ -1,5 +1,5 @@
 import { useState } from "react";
-import AttributeGenerator from "./Cyberpunk2077";
+
 import "./App.css";
 
 function App() {
@@ -173,7 +173,6 @@ function App() {
             ))}
         </div>
       </div>
-      <AttributeGenerator />
     </>
   );
 }
