@@ -1,9 +1,9 @@
 import React, { useState } from "react";
 
 const DateEstimator = () => {
-  const [date1, setDate1] = useState("");
+  const [date1, setDate1] = useState("2000-01-01");
   const [amount1, setAmount1] = useState("");
-  const [date2, setDate2] = useState("");
+  const [date2, setDate2] = useState("2025-01-01");
   const [amount2, setAmount2] = useState("");
   const [targetAmount, setTargetAmount] = useState("");
   const [estimatedDate, setEstimatedDate] = useState(null);
