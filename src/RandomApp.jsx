@@ -56,7 +56,7 @@ function App() {
 
   return (
     <>
-    
+
       {/* <h3>Random number generator</h3> */}
       <div className="card">
         <div className="numbers">
@@ -113,7 +113,6 @@ function App() {
             Shuffle
           </button>
         </div>
-
         <section className="special-numbers">
           {maxNumber === 12 && !shuffling && (
             <>
@@ -127,7 +126,6 @@ function App() {
                   </span>
                 ))}
               </div>
-
               <div className="number-row">
                 {Array.from({ length: 3 }, (_, i) => i + 1).map((num) => (
                   <span
@@ -138,7 +136,6 @@ function App() {
                   </span>
                 ))}
               </div>
-
               <div className="number-row">
                 {Array.from({ length: 4 }, (_, i) => i + 1).map((num) => (
                   <span
@@ -152,7 +149,6 @@ function App() {
             </>
           )}
         </section>
-
         <div className="number-row">
           {maxNumber &&
             maxNumber <= 99 &&

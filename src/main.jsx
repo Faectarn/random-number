@@ -3,10 +3,6 @@ import ReactDOM from "react-dom/client";
 import App from "./RandomApp.jsx";
 import TimeApp from "./TimeApp.jsx";
 import AttributeGenerator from "./AttributeGenerator";
-import {
-  cyberpunkAttributes,
-  avowedAttributes,
-} from "./attributeLists";
 import "./index.css";
 
 const Main = () => {
