@@ -19,7 +19,7 @@ const DateEstimator = () => {
     const time2 = new Date(date2).getTime();
     const parsedAmount1 = parseFloat(amount1);
     const parsedAmount2 = parseFloat(amount2);
-    const targetAmount = parseFloat(targetAmount);
+    const parsedTarget = parseFloat(targetAmount);
 
     if (time1 === time2 || parsedAmount1 === parsedAmount2) {
       alert("Datumen eller befolkningstalen får inte vara samma!");
@@ -30,26 +30,27 @@ const DateEstimator = () => {
     const growthRate = (time2 - time1) / (parsedAmount2 - parsedAmount1);
 
     // Beräkna datum för mål-befolkningen
-    const estimatedTime = time1 + (targetAmount - parsedAmount1) * growthRate;
+    const estimatedTime = time1 + (parsedTarget - parsedAmount1) * growthRate;
     const estimatedDateObj = new Date(estimatedTime);
 
     // Konvertera till YYYY-MM-DD format
     const formattedDate = estimatedDateObj.toISOString().split("T")[0];
     setEstimatedDate(formattedDate);
+    console.log(formattedDate)
   };
 
   return (
     <div className="card">
       <div className="time-input-div">
         <input
-          class="time-input"
+          className="time-input"
           type="date"
           value={date1}
           onChange={(e) => setDate1(e.target.value)}
         />
         <br />
         <input
-          class="rating-input"
+          className="rating-input"
           type="number"
           placeholder="Antal"
           value={amount1}
@@ -59,14 +60,14 @@ const DateEstimator = () => {
       </div>
       <div className="time-input-div">
         <input
-          class="time-input"
+          className="time-input"
           type="date"
           value={date2}
           onChange={(e) => setDate2(e.target.value)}
         />
         <br />
         <input
-          class="rating-input"
+          className="rating-input"
           type="number"
           placeholder="Antal"
           value={amount2}
@@ -76,7 +77,7 @@ const DateEstimator = () => {
       </div>
       <div className="time-input-div">
         <input
-          class="rating-input"
+          className="rating-input"
           type="number"
           placeholder="Antal"
           value={targetAmount}
