@@ -3,17 +3,17 @@ import ReactDOM from "react-dom/client";
 import App from "./RandomApp.jsx";
 import TimeApp from "./TimeApp.jsx";
 import AttributeGenerator from "./AttributeGenerator";
+import MatchSimulator from "./MatchSimulator";  // Lägg till din simulator
 import "./index.css";
 
 const Main = () => {
-  // True = show App, false = show TimeApp (unless showAG is true)
   const [showApp, setShowApp] = useState(() => {
     return localStorage.getItem("lastViewed") === "TimeApp" ? false : true;
   });
-  // True = show attribute generator
-  const [showAG, setShowAG] = useState(false);
 
-  // Persist lastViewed key only for App vs TimeApp
+  const [showAG, setShowAG] = useState(false);
+  const [showMS, setShowMS] = useState(false); // Ny state för MatchSimulator
+
   useEffect(() => {
     localStorage.setItem("lastViewed", showApp ? "App" : "TimeApp");
   }, [showApp]);
@@ -21,32 +21,45 @@ const Main = () => {
   return (
     <>
       <div className="controls">
-        {/* Toggle between App and TimeApp */}
         <button
           className="swap-button"
           onClick={() => {
             setShowAG(false);
+            setShowMS(false);
             setShowApp(prev => !prev);
           }}
         >
+          {/* Swap */}
         </button>
-        {/* Show AttributeGenerator */}
         <button
           className="swap-button ag-button"
-          onClick={() => setShowAG(prev => !prev)}
+          onClick={() => {
+            setShowMS(false);
+            setShowAG(prev => !prev);
+          }}
         >
           AGs
         </button>
-
+        <button
+          className="swap-button ms-button"
+          onClick={() => {
+            setShowAG(false);
+            setShowMS(prev => !prev);
+          }}
+        >
+          MS
+        </button>
       </div>
 
       {/* Conditionally render */}
       {showAG ? (
-        <div>
-          <AttributeGenerator />
-        </div>
+        <AttributeGenerator />
+      ) : showMS ? (
+        <MatchSimulator />
+      ) : showApp ? (
+        <App />
       ) : (
-        showApp ? <App /> : <TimeApp />
+        <TimeApp />
       )}
     </>
   );
