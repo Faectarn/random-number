@@ -54,6 +54,12 @@ export const dragonageAttributes = [
   { name: "Head bottom left", max: 30 },
   { name: "Head bottom-right", max: 30 },
 
+  { type: "small-header", label: "Head Shape" },
+{ name: "Head Shape Base", label: "Head Shape Base", min: 1, max: 100 },
+{ name: "Head Shape Variant A", label: "Head Shape Variant A", dependentOn: "Head Shape Base" },
+
+{ name: "Head Shape Variant B", label: "Head Shape Variant B", dependentSum: ["Head Shape Base", "Head Shape Variant A"]},
+
   { type: "header", label: "Head" },
   { type: "small-header", label: "Complexion" },
   { name: "Skin Hue", options: ["Warm", "Neutral", "Cool"] },
