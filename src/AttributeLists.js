@@ -57,7 +57,8 @@ export const dragonageAttributes = [
   { type: "header", label: "Head" },
   { type: "small-header", label: "Complexion" },
   { name: "Skin Hue", options: ["Warm", "Neutral", "Cool"] },
-  { name: "Melanin", max: 100, step: 5, percent: true }, // 0, 5, 10, ..., 100
+  { name: "Skin Tone", max: 16 },
+  { name: "Melanin", min: 60, max: 100, percent: true }, // 0, 5, 10, ..., 100
   { name: "Complexion", max: 42 },
 
   { type: "header", label: "Head" },
@@ -94,7 +95,7 @@ export const dragonageAttributes = [
 
   { type: "header", label: "Head" },
   { type: "small-header", label: "Chin" },
-  { name: "Chin Bump", min: -100, max: 100, step: 5, percent: true },
+  { name: "Chin Bump", max: 100, step: 5, percent: true },
   { name: "Width", min: -100, max: 100, step: 5, percent: true },
   { name: "Depth", min: -100, max: 100, step: 5, percent: true },
   { name: "Heigth", min: -100, max: 100, step: 5, percent: true },
@@ -120,13 +121,13 @@ export const dragonageAttributes = [
 
   { type: "header", label: "Body" },
   { type: "small-header", label: "Body proportions" },
-  { name: "Height", max: 100, step: 5, percent: true },
-  { name: "Shoulder Width", max: 100, step: 5, percent: true },
-  { name: "Chest Size", max: 100, step: 5, percent: true },
-  { name: "Waist Width", max: 100, step: 5, percent: true },
-  { name: "Hip Width", max: 100, step: 5, percent: true },
-  { name: "Glute Size", max: 100, step: 5, percent: true },
-  { name: "Bulge Size", max: 100, step: 5, percent: true },
+  { name: "Height", min: -100, max: 100, step: 5, percent: true },
+  { name: "Shoulder Width", min: -100, max: 100, step: 5, percent: true },
+  { name: "Chest Size", min: -100, max: 100, step: 5, percent: true },
+  { name: "Waist Width", min: -100, max: 100, step: 5, percent: true },
+  { name: "Hip Width", min: -100, max: 100, step: 5, percent: true },
+  { name: "Glute Size", min: -100, max: 100, step: 5, percent: true },
+  { name: "Bulge Size", min: -100, max: 100, step: 5, percent: true },
 
   { type: "header", label: "Eyes and Eybrows" },
   { type: "small-header", label: "Eye Shape" },
@@ -145,18 +146,18 @@ export const dragonageAttributes = [
 
   { type: "small-header", label: "Eye Color" },
   { name: "Middle Iris Color", max: 29 },
-  { name: "Saturation", max: 100, step: 5, percent: true },
-  { name: "Brightness", max: 100, step: 5, percent: true },
+  { name: "Saturation", max: 100, percent: true },
+  { name: "Brightness", max: 100, percent: true },
 
   { type: "small-header", label: "Eye Color" },
   { name: "Inner Iris Color", max: 29 },
-  { name: "Saturation", max: 100, step: 5, percent: true },
-  { name: "Brightness", max: 100, step: 5, percent: true },
+  { name: "Saturation", max: 100, percent: true },
+  { name: "Brightness", max: 100, percent: true },
 
   { type: "small-header", label: "Eye Color" },
   { name: "Outer Iris Color", max: 29 },
-  { name: "Saturation", max: 100, step: 5, percent: true },
-  { name: "Brightness", max: 100, step: 5, percent: true },
+  { name: "Saturation", max: 100, percent: true },
+  { name: "Brightness", max: 100, percent: true },
 
   { type: "header", label: "Eyes and Eybrows" },
   { type: "small-header", label: "Eyebrows" },
@@ -257,6 +258,12 @@ export const dragonageAttributes = [
   // { type: "small-header", label: "Eye Shadow" },
   // { name: "Tattoo Design", max: 11 },
 
+  { type: "small-header", label: "Voice" },
+  { name: "Voice type", max: 2 },
+  { name: "Voice pitch", options: ["Medium", "Low"] },
+
+  { type: "small-header", label: "Factions" },
+  { name: "Faction", options: ["Antivan Crows", "Grey Wardens", "Lords of Fortune", "Shadow Dragons", "The Mourn Watch", "Veil Jumpers"] },
 
 ];
 
