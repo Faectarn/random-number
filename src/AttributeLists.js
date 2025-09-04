@@ -50,9 +50,9 @@ export const avowedAttributes = {
 export const dragonageAttributes = [
   { type: "header", label: "Head" },
   { type: "small-header", label: "Head Shape" },
-  { name: "Head top", max: 30 },
-  { name: "Head bottom left", max: 30 },
-  { name: "Head bottom-right", max: 30 },
+  { name: "Head top", min: 1, max: 30 },
+  { name: "Head bottom left", min: 1, max: 30 },
+  { name: "Head bottom-right", min: 1, max: 30 },
 
   { type: "small-header", label: "Head Shape" },
   { name: "Head Shape Base", label: "Head Shape Base", min: 1, max: 100 },
@@ -63,9 +63,9 @@ export const dragonageAttributes = [
   { type: "header", label: "Head" },
   { type: "small-header", label: "Complexion" },
   { name: "Skin Hue", options: ["Warm", "Neutral", "Cool"] },
-  { name: "Skin Tone", max: 16 },
+  { name: "Skin Tone", min: 1, max: 16 },
   { name: "Melanin", min: 60, max: 100, percent: true }, // 0, 5, 10, ..., 100
-  { name: "Complexion", max: 42 },
+  { name: "Complexion", min: 1, max: 42 },
 
   { type: "header", label: "Head" },
   { name: "Head Width", min: -100, max: 100, step: 5, percent: true },
@@ -151,33 +151,33 @@ export const dragonageAttributes = [
   { name: "Hooded", max: 100, step: 5, percent: true },
 
   { type: "small-header", label: "Eye Color" },
-  { name: "Middle Iris Color", max: 29 },
+  { name: "Middle Iris Color", min: 1, max: 29 },
   { name: "Middle Iris Saturation", max: 100, percent: true },
   { name: "Middle Iris Brightness", max: 100, percent: true },
 
   { type: "small-header", label: "Eye Color" },
-  { name: "Inner Iris Color", max: 29 },
+  { name: "Inner Iris Color", min: 1, max: 29 },
   { name: "Inner Iris Saturation", max: 100, percent: true },
   { name: "Inner Iris Brightness", max: 100, percent: true },
 
   { type: "small-header", label: "Eye Color" },
-  { name: "Outer Iris Color", max: 29 },
+  { name: "Outer Iris Color", min: 1, max: 29 },
   { name: "Outer Iris Saturation", max: 100, percent: true },
   { name: "Outer Iris Brightness", max: 100, percent: true },
 
   { type: "header", label: "Eyes and Eybrows" },
   { type: "small-header", label: "Eyebrows" },
-  { name: "Eyebrow Shape", max: 51 },
+  { name: "Eyebrow Shape", min: 1, max: 51 },
 
   { type: "small-header", label: "Eyelashes" },
-  { name: "Eyelash Shape", max: 47 },
+  { name: "Eyelash Shape", min: 1, max: 47 },
 
   { type: "small-header", label: "Mascara" },
   { name: "Intensity", max: 100, percent: true },
 
   { type: "header", label: "Nose" },
   { type: "small-header", label: "Nose Shape" },
-  { name: "Nose Shape", max: 9, percent: true },
+  { name: "Nose Shape", min: 1, max: 9},
   { name: "Nose Depth", min: -100, max: 100, step: 5, percent: true },
   { name: "Nose Height", min: -100, max: 100, step: 5, percent: true },
   { name: "Nose Size", min: -100, max: 100, step: 5, percent: true },
@@ -219,7 +219,7 @@ export const dragonageAttributes = [
 
   { type: "header", label: "Ears" },
   { type: "small-header", label: "Ear Shape and Position" },
-  { name: "Ear Shape", max: 9 },
+  { name: "Ear Shape", min: 1, max: 9 },
   { name: "Ear Size", min: -100, max: 100, step: 5, percent: true },
   { name: "Earlobe Size", max: 100, step: 5, percent: true },
   { name: "Left Cauliflower Ear", max: 100, step: 5, percent: true },
@@ -247,13 +247,13 @@ export const dragonageAttributes = [
 
   { type: "header", label: "Tattoos, scars, and paint" },
   { type: "small-header", label: "Body tattoos" },
-  { name: "Tattoo Design", max: 22 },
+  { name: "Tattoo Design", min: 1, max: 22 },
 
   { type: "small-header", label: "Facial Scars" },
-  { name: "Facial Scar Shape", max: 34 },
+  { name: "Facial Scar Shape", min: 1, max: 34 },
 
   { type: "small-header", label: " Scars" },
-  { name: "Body Scar Shape", max: 27 },
+  { name: "Body Scar Shape", min: 1, max: 27 },
 
   // { type: "header", label: "Eye Makeup" },
   // { name: "Style", max: 36 },
@@ -265,7 +265,7 @@ export const dragonageAttributes = [
   // { name: "Tattoo Design", max: 11 },
 
   { type: "small-header", label: "Voice" },
-  { name: "Voice type", max: 2 },
+  { name: "Voice type", min: 1, max: 2 },
   { name: "Voice pitch", options: ["Medium", "Low"] },
 
   { type: "small-header", label: "Factions" },
