@@ -9,6 +9,15 @@ const AttributeGenerator = () => {
   const [results, setResults] = useState({});
   const [activeList, setActiveList] = useState(null);
 
+  const getBiasedPercent = (max = 100) => {
+    const r1 = Math.random();
+    const r2 = Math.random();
+    const sign = Math.random() < 0.5 ? -1 : 1;
+
+    // This creates a triangle distribution centered at 0 with more weight near 0
+    const biased = Math.abs(r1 - r2); // gives values clustered around 0
+    return Math.round(sign * biased * max);
+  };
 
   const getRandomValue = (item, currentResults = {}) => {
     if (item.options) {
@@ -16,7 +25,6 @@ const AttributeGenerator = () => {
       return item.options[index];
     }
 
-    // For dependentOn: limit max to 100 - base
     if (item.dependentOn) {
       const baseValue = currentResults[item.dependentOn] ?? 0;
       const max = Math.max(0, 100 - baseValue);
@@ -32,11 +40,15 @@ const AttributeGenerator = () => {
     }
 
     const { min = 0, max, step = 1 } = item;
+
+    if (item.percent) {
+      return getBiasedPercent(max); // just return it directly
+    }
+
     const steps = Math.floor((max - min) / step) + 1;
     const index = Math.floor(Math.random() * steps);
     return min + index * step;
   };
-
 
   const generateFromList = (list) => {
     const newResults = [];
@@ -61,7 +73,6 @@ const AttributeGenerator = () => {
 
     setResults(newResults);
   };
-
 
   return (
     <div className="attribute-generator">
@@ -97,10 +108,18 @@ const AttributeGenerator = () => {
         <div className="result">
           {activeList.map((item, idx) => {
             if (item.type === "header") {
-              return <h3 key={idx} className="section-header">{item.label}</h3>;
+              return (
+                <h3 key={idx} className="section-header">
+                  {item.label}
+                </h3>
+              );
             }
             if (item.type === "small-header") {
-              return <h4 key={idx} className="section-small-header">{item.label}</h4>;
+              return (
+                <h4 key={idx} className="section-small-header">
+                  {item.label}
+                </h4>
+              );
             }
 
             // 🚫 Hide the variants
@@ -119,8 +138,12 @@ const AttributeGenerator = () => {
             // ✅ Special combined format
             if (resultItem.name === "Head Shape Base") {
               const base = resultItem.value;
-              const variant = results.find(r => r.name === "Head Shape Variant A")?.value || 0;
-              const remainder = results.find(r => r.name === "Head Shape Variant B")?.value || 0;
+              const variant =
+                results.find((r) => r.name === "Head Shape Variant A")?.value ||
+                0;
+              const remainder =
+                results.find((r) => r.name === "Head Shape Variant B")?.value ||
+                0;
               displayValue = `${base}:${variant}:${remainder}`;
             } else if (resultItem.percent) {
               displayValue = `${displayValue}%`;
@@ -137,11 +160,8 @@ const AttributeGenerator = () => {
               </div>
             );
           })}
-
         </div>
       )}
-
-
     </div>
   );
 };
