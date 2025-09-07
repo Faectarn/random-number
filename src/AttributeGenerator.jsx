@@ -9,15 +9,26 @@ const AttributeGenerator = () => {
   const [results, setResults] = useState({});
   const [activeList, setActiveList] = useState(null);
 
-  const getBiasedPercent = (max = 100) => {
-    const r1 = Math.random();
-    const r2 = Math.random();
-    const sign = Math.random() < 0.5 ? -1 : 1;
+const getBiasedPercent = (min = 0, max = 100, step = 1) => {
+  const r1 = Math.random();
+  const r2 = Math.random();
 
-    // This creates a triangle distribution centered at 0 with more weight near 0
-    const biased = Math.abs(r1 - r2); // gives values clustered around 0
-    return Math.round(sign * biased * max);
-  };
+  // Biased value between 0 and 1 (centered around 0)
+  const biased = Math.abs(r1 - r2);
+
+  // Scale to range
+  const range = max - min;
+  const raw = min >= 0
+    ? biased * range               // if min is 0 or higher, force positive
+    : (Math.random() < 0.5 ? -1 : 1) * biased * range; // allow negative
+
+  // Round to nearest step
+  const stepped = Math.round(raw / step) * step;
+
+  // Clamp to valid range
+  const final = Math.min(max, Math.max(min, stepped));
+  return final;
+};
 
   const getRandomValue = (item, currentResults = {}) => {
     if (item.options) {
@@ -41,9 +52,9 @@ const AttributeGenerator = () => {
 
     const { min = 0, max, step = 1 } = item;
 
-    if (item.percent) {
-      return getBiasedPercent(max); // just return it directly
-    }
+if (item.percent) {
+  return getBiasedPercent(item.min ?? 0, item.max ?? 100, item.step ?? 1);
+}
 
     const steps = Math.floor((max - min) / step) + 1;
     const index = Math.floor(Math.random() * steps);
