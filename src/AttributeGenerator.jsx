@@ -31,35 +31,25 @@ const getBiasedPercent = (min = 0, max = 100, step = 1) => {
 };
 
   const getRandomValue = (item, currentResults = {}) => {
-    if (item.options) {
-      const index = Math.floor(Math.random() * item.options.length);
-      return item.options[index];
-    }
+const getBiasedPercent = (min = 0, max = 100, step = 1) => {
+  const r1 = Math.random();
+  const r2 = Math.random();
 
-    if (item.dependentOn) {
-      const baseValue = currentResults[item.dependentOn] ?? 0;
-      const max = Math.max(0, 100 - baseValue);
-      return Math.floor(Math.random() * (max + 1));
-    }
+  // Triangle distribution favoring values near 0
+  const biased = Math.pow(Math.abs(r1 - r2), 1.5); // skew stronger toward 0
 
-    // For dependentSum: third value = 100 - sum of others
-    if (item.dependentSum) {
-      const sum = item.dependentSum
-        .map((key) => currentResults[key] || 0)
-        .reduce((a, b) => a + b, 0);
-      return Math.max(0, 100 - sum);
-    }
+  // Always positive if min >= 0, otherwise symmetric
+  const raw = min >= 0
+    ? biased * (max - min)
+    : (Math.random() < 0.5 ? -1 : 1) * biased * (max - min);
 
-    const { min = 0, max, step = 1 } = item;
+  // Round to nearest step
+  const stepped = Math.round(raw / step) * step;
 
-if (item.percent) {
-  return getBiasedPercent(item.min ?? 0, item.max ?? 100, item.step ?? 1);
-}
-
-    const steps = Math.floor((max - min) / step) + 1;
-    const index = Math.floor(Math.random() * steps);
-    return min + index * step;
-  };
+  // Clamp
+  const final = Math.min(max, Math.max(min, stepped));
+  return final;
+};
 
   const generateFromList = (list) => {
     const newResults = [];
