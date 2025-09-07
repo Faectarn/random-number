@@ -9,14 +9,25 @@ const AttributeGenerator = () => {
   const [results, setResults] = useState({});
   const [activeList, setActiveList] = useState(null);
 
-  const getBiasedPercent = (max = 100) => {
+  const getBiasedPercent = (min = 0, max = 100, step = 1) => {
     const r1 = Math.random();
     const r2 = Math.random();
-    const sign = Math.random() < 0.5 ? -1 : 1;
 
-    // This creates a triangle distribution centered at 0 with more weight near 0
-    const biased = Math.abs(r1 - r2); // gives values clustered around 0
-    return Math.round(sign * biased * max);
+    // Triangle distribution favoring values near 0
+    const biased = Math.pow(Math.abs(r1 - r2), 1.5); // skew stronger toward 0
+
+    // Always positive if min >= 0, otherwise symmetric
+    const raw =
+      min >= 0
+        ? biased * (max - min)
+        : (Math.random() < 0.5 ? -1 : 1) * biased * (max - min);
+
+    // Round to nearest step
+    const stepped = Math.round(raw / step) * step;
+
+    // Clamp
+    const final = Math.min(max, Math.max(min, stepped));
+    return final;
   };
 
   const getRandomValue = (item, currentResults = {}) => {
