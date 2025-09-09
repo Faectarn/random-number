@@ -9,78 +9,58 @@ const AttributeGenerator = () => {
   const [results, setResults] = useState({});
   const [activeList, setActiveList] = useState(null);
 
-  const getBiasedPercent = (min = -100, max = 100, step = 5) => {
-    const weights = [];
+ const getRandomValue = (item, currentResults = {}) => {
+  if (item.options) {
+    const index = Math.floor(Math.random() * item.options.length);
+    return item.options[index];
+  }
 
-    // Max avstånd från 0
-    const maxDistance = min < 0 ? Math.max(Math.abs(min), Math.abs(max)) : max;
+  // For dependentOn: limit max to 100 - base
+  if (item.dependentOn) {
+    const baseValue = currentResults[item.dependentOn] ?? 0;
+    const max = Math.max(0, 100 - baseValue);
+    return Math.floor(Math.random() * (max + 1));
+  }
 
-    for (let i = min; i <= max; i += step) {
-      const distance = Math.abs(i);
-      const weight = Math.round((maxDistance - distance) / step + 1);
-      for (let j = 0; j < weight; j++) {
-        weights.push(i);
-      }
-    }
+  // For dependentSum: third value = 100 - sum of others
+  if (item.dependentSum) {
+    const sum = item.dependentSum
+      .map((key) => currentResults[key] || 0)
+      .reduce((a, b) => a + b, 0);
+    return Math.max(0, 100 - sum);
+  }
 
-    const index = Math.floor(Math.random() * weights.length);
-    return weights[index];
-  };
+  const { min = 0, max, step = 1 } = item;
+  const steps = Math.floor((max - min) / step) + 1;
+  const index = Math.floor(Math.random() * steps);
+  return min + index * step;
+};
 
-  const getRandomValue = (item, currentResults = {}) => {
-    if (item.options) {
-      const index = Math.floor(Math.random() * item.options.length);
-      return item.options[index];
-    }
 
-    if (item.dependentOn) {
-      const baseValue = currentResults[item.dependentOn] ?? 0;
-      const max = Math.max(0, 100 - baseValue);
-      return Math.floor(Math.random() * (max + 1));
-    }
+ const generateFromList = (list) => {
+  const newResults = [];
 
-    // For dependentSum: third value = 100 - sum of others
-    if (item.dependentSum) {
-      const sum = item.dependentSum
-        .map((key) => currentResults[key] || 0)
-        .reduce((a, b) => a + b, 0);
-      return Math.max(0, 100 - sum);
-    }
+  list.forEach((item, idx) => {
+    if (item.type === "header" || item.type === "small-header") return;
 
-    const { min = 0, max, step = 1 } = item;
+    const currentMap = Object.fromEntries(
+      newResults.map((r) => [r.name, r.value])
+    );
 
-    if (item.percent) {
-      return getBiasedPercent(min, max, step);
-    }
+    const value = getRandomValue(item, currentMap);
 
-    const steps = Math.floor((max - min) / step) + 1;
-    const index = Math.floor(Math.random() * steps);
-    return min + index * step;
-  };
-
-  const generateFromList = (list) => {
-    const newResults = [];
-
-    list.forEach((item, idx) => {
-      if (item.type === "header" || item.type === "small-header") return;
-
-      const currentMap = Object.fromEntries(
-        newResults.map((r) => [r.name, r.value])
-      );
-
-      const value = getRandomValue(item, currentMap);
-
-      newResults.push({
-        name: item.name,
-        label: item.label,
-        value,
-        percent: item.percent,
-        idx,
-      });
+    newResults.push({
+      name: item.name,
+      label: item.label,
+      value,
+      percent: item.percent,
+      idx,
     });
+  });
 
-    setResults(newResults);
-  };
+  setResults(newResults);
+};
+
 
   return (
     <div className="attribute-generator">
