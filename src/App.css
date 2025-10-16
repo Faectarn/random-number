@@ -114,16 +114,17 @@
   padding: 5px;
   border: 1px solid #3b3b3b;
   border-radius: 4px;
+  font-weight: 500;
 }
 
 .grayed-out {
-  color: gray;
+  color: #3e3e3e;
 }
 
 .number-row .highlight {
-  color: red;
+  color: #ff4400;
   font-weight: bold;
-  font-size: 18px;
+  font-size: 17px;
 }
 
 .number-row .highlight2 {

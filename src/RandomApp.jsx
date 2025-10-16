@@ -8,7 +8,6 @@ function App() {
   const [randomNumbers, setRandomNumbers] = useState([]);
   const [shuffling, setShuffling] = useState(false);
   const [pickedNumbers, setPickedNumbers] = useState([]);
-  const [ignoredNumbers, setIgnoredNumbers] = useState([]);
 
   const shuffleArray = (array) => {
     for (let i = array.length - 1; i > 0; i--) {
@@ -17,72 +16,57 @@ function App() {
     }
   };
 
-  const pool = (limit) =>
-    Array.from({ length: limit }, (_, i) => i + 1).filter(
-      (n) => !ignoredNumbers.includes(n) && !pickedNumbers.includes(n)
-    );
+  const tickMS = 75;
+  const shuffleTicks = 7;
 
-  const handleNumberSelectAndGenerate = (num) => {
-    resetNumbers();
-    if (shuffling || num < numRandoms) return;
-
-    setMaxNumber(num);
+  const runAnimatedPick = (getCandidates) => {
     setShuffling(true);
 
     let count = 0;
     let finalPick = [];
 
     const intervalId = setInterval(() => {
-      const possible = pool(num);
-      if (possible.length === 0) {
+      const candidates = getCandidates();
+      if (candidates.length === 0) {
         clearInterval(intervalId);
         setShuffling(false);
         return;
       }
-      shuffleArray(possible);
-      finalPick = possible.slice(0, Math.min(numRandoms, possible.length));
+
+      shuffleArray(candidates);
+      finalPick = candidates.slice(0, Math.min(numRandoms, candidates.length));
       setRandomNumbers(finalPick);
 
       count += 1;
-      if (count > 6) {
+      if (count >= shuffleTicks) {
         clearInterval(intervalId);
-        // ✅ only now we commit them as picked
         setPickedNumbers((prev) => [...prev, ...finalPick]);
         setShuffling(false);
       }
-    }, 75);
+    }, tickMS);
+  };
+
+  const pool = (limit) =>
+    Array.from({ length: limit }, (_, i) => i + 1).filter(
+      (n) => !pickedNumbers.includes(n)
+    );
+
+  const handleNumberSelectAndGenerate = (num) => {
+    resetNumbers?.();
+    if (shuffling || num < numRandoms) return;
+
+    setMaxNumber(num);
+    runAnimatedPick(() => pool(num));
   };
 
   const pickFromRemaining = () => {
     if (shuffling || !maxNumber) return;
-
-    setShuffling(true);
-
-    let count = 0;
-    let finalPick = [];
-
-    const intervalId = setInterval(() => {
-      const remaining = pool(maxNumber);
-      if (remaining.length === 0) {
-        clearInterval(intervalId);
-        setShuffling(false);
-        return;
-      }
-      shuffleArray(remaining);
-      finalPick = remaining.slice(0, Math.min(numRandoms, remaining.length));
-      setRandomNumbers(finalPick);
-
-      count += 1;
-      if (count > 6) {
-        clearInterval(intervalId);
-        // ✅ commit after animation
-        setPickedNumbers((prev) => [...prev, ...finalPick]);
-        setShuffling(false);
-      }
-    }, 75);
+    runAnimatedPick(() => pool(maxNumber));
   };
 
+
   const handleInputChange = (e) => setInputValue(e.target.value);
+
   const handleNumRandomsChange = (e) =>
     setNumRandoms(Math.max(1, parseInt(e.target.value, 10) || 1));
 
@@ -210,13 +194,11 @@ function App() {
             Array.from({ length: maxNumber }, (_, i) => i + 1).map((num) => (
               <span
                 key={num}
-                className={`
-    ${randomNumbers.includes(num) ? "highlight" : ""}
-    ${
-      pickedNumbers.includes(num) && !randomNumbers.includes(num)
-        ? "grayed-out"
-        : ""
-    }
+                className={`${randomNumbers.includes(num) ? "highlight" : ""}
+                            ${pickedNumbers.includes(num) && !randomNumbers.includes(num)
+                    ? "grayed-out"
+                    : ""
+                  }
   `}
               >
                 {num}
