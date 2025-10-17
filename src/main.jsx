@@ -31,7 +31,7 @@ const Main = () => {
         >
           {/* Swap */}
         </button>
-        <button
+        {/* <button
           className="swap-button ag-button"
           onClick={() => {
             setShowMS(false);
@@ -39,7 +39,7 @@ const Main = () => {
           }}
         >
           AGs
-        </button>
+        </button> */}
         <button
           className="swap-button ms-button"
           onClick={() => {
@@ -52,9 +52,11 @@ const Main = () => {
       </div>
 
       {/* Conditionally render */}
-      {showAG ? (
-        <AttributeGenerator />
-      ) : showMS ? (
+      {
+      // showAG ? (
+      //   <AttributeGenerator />
+      // ) : 
+      showMS ? (
         <MatchSimulator />
       ) : showApp ? (
         <App />

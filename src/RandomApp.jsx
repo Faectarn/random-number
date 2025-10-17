@@ -8,6 +8,7 @@ function App() {
   const [randomNumbers, setRandomNumbers] = useState([]);
   const [shuffling, setShuffling] = useState(false);
   const [pickedNumbers, setPickedNumbers] = useState([]);
+  const [drawHistory, setDrawHistory] = useState([]);
 
   const shuffleArray = (array) => {
     for (let i = array.length - 1; i > 0; i--) {
@@ -41,6 +42,7 @@ function App() {
       if (count >= shuffleTicks) {
         clearInterval(intervalId);
         setPickedNumbers((prev) => [...prev, ...finalPick]);
+        setDrawHistory((prev) => [...prev, finalPick]);
         setShuffling(false);
       }
     }, tickMS);
@@ -64,7 +66,6 @@ function App() {
     runAnimatedPick(() => pool(maxNumber));
   };
 
-
   const handleInputChange = (e) => setInputValue(e.target.value);
 
   const handleNumRandomsChange = (e) =>
@@ -81,6 +82,7 @@ function App() {
   const resetNumbers = () => {
     setPickedNumbers([]);
     setRandomNumbers([]);
+    setDrawHistory([]);
   };
 
   return (
@@ -195,10 +197,12 @@ function App() {
               <span
                 key={num}
                 className={`${randomNumbers.includes(num) ? "highlight" : ""}
-                            ${pickedNumbers.includes(num) && !randomNumbers.includes(num)
-                    ? "grayed-out"
-                    : ""
-                  }
+                            ${
+                              pickedNumbers.includes(num) &&
+                              !randomNumbers.includes(num)
+                                ? "grayed-out"
+                                : ""
+                            }
   `}
               >
                 {num}
@@ -212,6 +216,20 @@ function App() {
               </span>
             ))}
         </div>
+        
+        {drawHistory.length > 0 && (
+          <div className="draw-history">
+            {drawHistory.map((group, idx) => (
+              <div className="draw" key={idx}>
+                {group.map((n, i) => (
+                  <span className="chip" key={`${idx}-${i}`}>
+                    {n}
+                  </span>
+                ))}
+              </div>
+            ))}
+          </div>
+        )}
       </div>
     </>
   );
