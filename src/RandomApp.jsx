@@ -216,8 +216,7 @@ function App() {
               </span>
             ))}
         </div>
-        
-        {drawHistory.length > 0 && (
+        {drawHistory.length >= 2 && (
           <div className="draw-history">
             {drawHistory.map((group, idx) => (
               <div className="draw" key={idx}>

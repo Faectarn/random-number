@@ -93,7 +93,7 @@
   font-size: 16px;
   padding: 7px 0 7px 16px;
   width: 3rem;
-  height: 29px;
+  height: 26px;
   border: none;
 }
 
@@ -160,15 +160,19 @@
 }
 
 .draw-history {
-  display: grid;
-  grid-template-columns: 1fr 1fr 1fr;
+  display: flex;
+  flex-wrap: wrap;
+  flex-direction: row;
+  justify-content: center;
+  max-width: 28rem;
   margin-top: 1rem;
-  text-align: left;
   gap: 7px;
 }
 
 .draw {
   display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
 }
 
 .chip {
@@ -177,11 +181,10 @@
   font-size: 14px;
   background-color: #3c3c3c;
   flex-direction: row;
-  width: 19px;
+  min-width: 18px;
   text-align: center;
   font-weight: 600;
 }
-
 
 .read-the-docs {
   color: #888;
