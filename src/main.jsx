@@ -2,63 +2,42 @@ import React, { useState, useEffect } from "react";
 import ReactDOM from "react-dom/client";
 import App from "./RandomApp.jsx";
 import TimeApp from "./TimeApp.jsx";
-import AttributeGenerator from "./AttributeGenerator";
-import MatchSimulator from "./MatchSimulator";  // Lägg till din simulator
+import MatchSimulator from "./MatchSimulator";
+import LuckyWheel from "./LuckyWheel";
 import "./index.css";
 
 const Main = () => {
-  const [showApp, setShowApp] = useState(() => {
-    return localStorage.getItem("lastViewed") === "TimeApp" ? false : true;
+  const [selectedView, setSelectedView] = useState(() => {
+    const lastViewed = localStorage.getItem("lastViewed");
+    return ["TimeApp", "MatchSimulator", "LuckyWheel"].includes(lastViewed)
+      ? lastViewed
+      : "App";
   });
 
-  const [showAG, setShowAG] = useState(false);
-  const [showMS, setShowMS] = useState(false); // Ny state för MatchSimulator
-
   useEffect(() => {
-    localStorage.setItem("lastViewed", showApp ? "App" : "TimeApp");
-  }, [showApp]);
+    localStorage.setItem("lastViewed", selectedView);
+  }, [selectedView]);
 
   return (
     <>
       <div className="controls">
-        <button
-          className="swap-button"
-          onClick={() => {
-            setShowAG(false);
-            setShowMS(false);
-            setShowApp(prev => !prev);
-          }}
+        <select
+          className="page-select"
+          value={selectedView}
+          onChange={(e) => setSelectedView(e.target.value)}
         >
-          {/* Swap */}
-        </button>
-        {/* <button
-          className="swap-button ag-button"
-          onClick={() => {
-            setShowMS(false);
-            setShowAG(prev => !prev);
-          }}
-        >
-          AGs
-        </button> */}
-        <button
-          className="swap-button ms-button"
-          onClick={() => {
-            setShowAG(false);
-            setShowMS(prev => !prev);
-          }}
-        >
-          MS
-        </button>
+          <option value="App">Random</option>
+          <option value="TimeApp">Time</option>
+          <option value="MatchSimulator">MS</option>
+          <option value="LuckyWheel">Lyckohjul</option>
+        </select>
       </div>
 
-      {/* Conditionally render */}
-      {
-      // showAG ? (
-      //   <AttributeGenerator />
-      // ) : 
-      showMS ? (
+      {selectedView === "MatchSimulator" ? (
         <MatchSimulator />
-      ) : showApp ? (
+      ) : selectedView === "LuckyWheel" ? (
+        <LuckyWheel />
+      ) : selectedView === "App" ? (
         <App />
       ) : (
         <TimeApp />
