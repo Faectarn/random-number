@@ -4,12 +4,20 @@ import App from "./RandomApp.jsx";
 import TimeApp from "./TimeApp.jsx";
 import MatchSimulator from "./MatchSimulator";
 import LuckyWheel from "./LuckyWheel";
+import BabyFeedingApp from "./BabyFeedingApp.jsx";
+import WorkoutGenerator from "./WorkoutGenerator.jsx";
 import "./index.css";
 
 const Main = () => {
   const [selectedView, setSelectedView] = useState(() => {
     const lastViewed = localStorage.getItem("lastViewed");
-    return ["TimeApp", "MatchSimulator", "LuckyWheel"].includes(lastViewed)
+    return [
+      "TimeApp",
+      "MatchSimulator",
+      "LuckyWheel",
+      "BabyFeedingApp",
+      "WorkoutGenerator",
+    ].includes(lastViewed)
       ? lastViewed
       : "App";
   });
@@ -30,6 +38,8 @@ const Main = () => {
           <option value="TimeApp">Time</option>
           <option value="MatchSimulator">MS</option>
           <option value="LuckyWheel">Lyckohjul</option>
+          <option value="BabyFeedingApp">Beibsmatning</option>
+          <option value="WorkoutGenerator">Träning</option>
         </select>
       </div>
 
@@ -37,6 +47,10 @@ const Main = () => {
         <MatchSimulator />
       ) : selectedView === "LuckyWheel" ? (
         <LuckyWheel />
+      ) : selectedView === "BabyFeedingApp" ? (
+        <BabyFeedingApp />
+      ) : selectedView === "WorkoutGenerator" ? (
+        <WorkoutGenerator />
       ) : selectedView === "App" ? (
         <App />
       ) : (
