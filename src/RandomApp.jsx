@@ -48,10 +48,7 @@ function App() {
     }, tickMS);
   };
 
-  const pool = (limit) =>
-    Array.from({ length: limit }, (_, i) => i + 1).filter(
-      (n) => !pickedNumbers.includes(n)
-    );
+  const pool = (limit) => Array.from({ length: limit }, (_, i) => i + 1);
 
   const handleNumberSelectAndGenerate = (num) => {
     resetNumbers?.();
