@@ -48,7 +48,10 @@ function App() {
     }, tickMS);
   };
 
-  const pool = (limit) => Array.from({ length: limit }, (_, i) => i + 1);
+  const pool = (limit, excluded = []) =>
+    Array.from({ length: limit }, (_, i) => i + 1).filter(
+      (n) => !excluded.includes(n)
+    );
 
   const handleNumberSelectAndGenerate = (num) => {
     resetNumbers?.();
@@ -60,7 +63,7 @@ function App() {
 
   const pickFromRemaining = () => {
     if (shuffling || !maxNumber) return;
-    runAnimatedPick(() => pool(maxNumber));
+    runAnimatedPick(() => pool(maxNumber, pickedNumbers));
   };
 
   const handleInputChange = (e) => setInputValue(e.target.value);
